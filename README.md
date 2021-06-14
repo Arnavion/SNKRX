@@ -13,9 +13,11 @@ https://user-images.githubusercontent.com/409773/119258159-ea982b00-bb9e-11eb-80
 
 ### Modifications to the original version
 
-The original version can be found [here.](https://github.com/a327ex/SNKRX) This repository contains patches rebased on top of upstream's master. Currently there is one patch:
+The original version can be found [here.](https://github.com/a327ex/SNKRX) This repository contains patches rebased on top of upstream's master. Currently there are two patches:
 
 1. Remove Steam API calls and checked-in love binaries.
+
+1. Fix a crash in the code that tests for big-integer support that requires Lua 5.4, and thus crashes on distros where love uses luajit which is Lua 5.1
 
 ### Running
 

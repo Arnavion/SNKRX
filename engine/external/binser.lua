@@ -65,7 +65,7 @@ local bigIntSupport = false
 local isInteger
 if math.type then -- Detect Lua 5.3
     local mtype = math.type
-    bigIntSupport = loadstring[[
+    local bigIntSupportTest, err = loadstring[[
     local char = string.char
     return function(n)
         local nn = n < 0 and -(n + 1) or n
@@ -82,7 +82,12 @@ if math.type then -- Detect Lua 5.3
             b5, b6, b7, b8 = 0xFF - b5, 0xFF - b6, 0xFF - b7, 0xFF - b8
         end
         return char(212, b1, b2, b3, b4, b5, b6, b7, b8)
-    end]]()
+    end]]
+    if bigIntSupportTest == nil then
+        print(err)
+    else
+        bigIntSupport = bigIntSupportTest()
+    end
     isInteger = function(x)
         return mtype(x) == 'integer'
     end
